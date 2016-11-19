@@ -11,8 +11,8 @@ public class udp : MonoBehaviour {
 		int srcPort = 80;
 		int destPort = 80;
 		int speed = 0;
-		string direction = north;
-		char congestionLevel = 0;
+		string direction = "north";
+		int congestionLevel = 0;
 	
 	}
 	
