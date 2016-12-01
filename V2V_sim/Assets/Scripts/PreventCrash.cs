@@ -5,18 +5,24 @@ public class PreventCrash : MonoBehaviour {
 
 	public Rigidbody car;
 	public Transform carT;
+	public string[] pathCycle;
 
 	private Vector3 zero = new Vector3 (0, 0, 0);
 	private Vector3 vel;
+
 	private bool stopped = false;
+
 	private double timeCount = 0;
 	private double timeBeforeTurn = -1;
 	private double timeBeforeContinue = -1;
+
 	private string turnDirection = "straight";
+
+	private int pathIndx = 0;
 
 	// Use this for initialization
 	void Start () {
-	
+		car.velocity = new Vector3 (0, 0, 10);
 	}
 	
 	// Update is called once per frame
@@ -79,8 +85,13 @@ public class PreventCrash : MonoBehaviour {
 	 			 stopped) {
 			car.velocity = vel;
 			timeBeforeTurn = 2.5;
-			turnDirection = "right";// <= This is where directions should be delivered
+			turnDirection = pathCycle[pathIndx];// <= This is where directions should be delivered
 			stopped = false;
+
+			pathIndx++;
+			if (pathIndx >= pathCycle.Length) {
+				pathIndx = 0;
+			}
 		}
 	}
 
