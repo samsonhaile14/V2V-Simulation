@@ -7,6 +7,8 @@ public class PreventCrash : MonoBehaviour {
 	public Transform carT;
 	public string[] pathCycle;
 
+	public Vector3 startVel = new Vector3 (0, 0, 10);
+
 	private Vector3 zero = new Vector3 (0, 0, 0);
 	private Vector3 vel;
 

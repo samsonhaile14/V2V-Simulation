@@ -3,6 +3,8 @@ using System.Collections;
 
 public class udp : MonoBehaviour {
 
+	public Transform car;
+
 	int srcIP = 0;       // static IP addresses 
 	int destIP = 65535;  // broadcast address
 	int srcPort = 80;
