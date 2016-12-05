@@ -20,11 +20,18 @@ public class PreventCrash : MonoBehaviour {
 
 	private string turnDirection = "straight";
 
+	private float speed = 80;
+
 	private int pathIndx = 0;
 
 	// Use this for initialization
 	void Start () {
-		car.velocity = new Vector3 (0, 0, 10);
+
+		if (startVel.z == 0) {
+			speed = 0;
+		}
+
+		car.velocity = new Vector3 (0, 0, speed);
 	}
 	
 	// Update is called once per frame
@@ -45,8 +52,8 @@ public class PreventCrash : MonoBehaviour {
 						mult = -1;
 					}
 
-					if (car.velocity == new Vector3 (0, 0, 10) ||
-					    car.velocity == new Vector3 (0, 0, -10)) {
+					if (car.velocity == new Vector3 (0, 0, speed) ||
+					    car.velocity == new Vector3 (0, 0, -1 * speed)) {
 						car.velocity = new Vector3 (car.velocity.z * mult, 0, 0);
 					} else {
 						car.velocity = new Vector3 (0, 0, car.velocity.x * mult * -1f);
@@ -76,7 +83,7 @@ public class PreventCrash : MonoBehaviour {
 			
 		//stop if approaching danger
 		if ((other.gameObject.name == "Shield" && (car.velocity != zero)) ||
-			(other.gameObject.name.Substring(0,5) == "Cross" && (timeBeforeTurn == -1))) {
+			(other.gameObject.name.Substring(0,5) == "Cross" && (timeBeforeTurn == -1)) && !stopped) {
 			stopped = true;
 			vel = car.velocity;
 			car.velocity = new Vector3 (0, 0, 0);
@@ -86,7 +93,7 @@ public class PreventCrash : MonoBehaviour {
 		else if (other.gameObject.name == "TrafficRelease" && (timeBeforeTurn == -1) &&
 	 			 stopped) {
 			car.velocity = vel;
-			timeBeforeTurn = 2.5;
+			timeBeforeTurn = 0.625 * (40f / speed);
 			turnDirection = pathCycle[pathIndx];// <= This is where directions should be delivered
 			stopped = false;
 

@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\InitiatePacket.cs" />
      <Compile Include="Assets\Scripts\PreventCrash.cs" />
      <Compile Include="Assets\Scripts\SwitchTraffic.cs" />
      <Compile Include="Assets\Scripts\udp.cs" />
