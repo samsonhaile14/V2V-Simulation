@@ -8,7 +8,7 @@ public class InitiatePacket : MonoBehaviour {
 
 	public Collider broadcast;
 
-	public float xDest, yDest, destRange;
+	public float xDest, zDest, destRange;
 
 	// Use this for initialization
 	void Start () {
@@ -21,20 +21,22 @@ public class InitiatePacket : MonoBehaviour {
 			store.data = "Congestion Level: 500";
 
 			store.xCor = xDest;	//specify the location the packet is intended for
-			store.yCor = yDest;
+			store.zCor = zDest;
 			store.range = destRange;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (timeCount < store.ttl) {
-			timeCount += Time.deltaTime;
-		}
+		timeCount += Time.deltaTime;
 
-		if (broadcast.enabled && timeCount > store.ttl ) {
+		if (broadcast.enabled && timeCount > store.ttl) {
 			//Disable broadcast
-				broadcast.enabled = false;
+			broadcast.enabled = false;
+			timeCount = 0;
+		} else if (!broadcast.enabled && timeCount > 15) {	//wait 60 seconds before sending another packet
+			broadcast.enabled = true;
+			timeCount = 0;
 		}
 
 	}

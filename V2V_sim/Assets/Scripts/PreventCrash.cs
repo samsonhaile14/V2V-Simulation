@@ -29,7 +29,7 @@ public class PreventCrash : MonoBehaviour {
 
 		if (startVel.z == 0) {
 			speed = 0;
-		}
+		} 
 
 		car.velocity = new Vector3 (0, 0, speed);
 	}
