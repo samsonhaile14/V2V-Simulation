@@ -107,7 +107,6 @@ public class udp : MonoBehaviour {
 					nodesTraveled.Enqueue (srcIP - 1);
 					for (int a = 0; a < nodes - 1; a++) {	//level in the breadth first search
 						Queue<int> nextLevel = new Queue<int>();
-						int sizeLevel = nodesTraveled.Count;
 						while (nodesTraveled.Count > 0) {
 							int node = nodesTraveled.Dequeue ();
 							int firstChoice = -1;
